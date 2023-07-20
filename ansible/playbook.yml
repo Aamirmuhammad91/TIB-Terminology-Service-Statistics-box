@@ -1,5 +1,4 @@
----
-# TODO start adding roles to your playbook!
-#- hosts: all
-#  roles:
-#    - yourrole
+
+- hosts: all
+ roles:
+   - sandbox
