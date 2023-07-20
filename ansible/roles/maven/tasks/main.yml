@@ -1,0 +1,7 @@
+- name: Install Maven
+  become: yes
+  package:
+    name: maven
+    state: present
+  tags:
+    - root-tasks
