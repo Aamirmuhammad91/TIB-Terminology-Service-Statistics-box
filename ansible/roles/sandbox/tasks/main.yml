@@ -4,16 +4,15 @@
     dest: '{{ sandbox_base_dir }}'
     force: yes
     version: '{{ sandbox_version }}'
+# - name: Run Maven clean install
+#   shell: mvn clean install -DskipTests
+#   args:
+#     chdir: '{{ sandbox_base_dir }}'
 
-- name: Run Maven clean install
-  shell: mvn clean install -DskipTests
-  args:
-    chdir: '{{ sandbox_base_dir }}'
-
-- name: Run Docker Compose build
-  shell: docker-compose build
-  args:
-    chdir: '{{ sandbox_base_dir }}'
+# - name: Run Docker Compose build
+#   shell: docker-compose build
+#   args:
+#     chdir: '{{ sandbox_base_dir }}'
 
 # - name: Copy backend dockerfile
 #   copy:
@@ -27,7 +26,7 @@
 #     dest: '{{ sandbox_base_dir }}/docker-compose.yml'
 #   when: (alternative_dockercomposefile is defined) and (alternative_dockercomposefile != "") and (alternative_dockercomposefile is not none)
 
-- name: Run docker-compose up -d
-  command: 'docker-compose up -d'
-  args:
-    chdir: '{{ sandbox_base_dir }}'
+# - name: Run docker-compose up -d
+#   command: 'docker-compose up -d'
+#   args:
+#     chdir: '{{ sandbox_base_dir }}'
