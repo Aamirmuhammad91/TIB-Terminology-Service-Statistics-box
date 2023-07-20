@@ -1,0 +1,7 @@
+- name: Install sandbox packages
+  become: yes
+  package:
+    name: git
+    state: present
+  tags:
+    - root-task
