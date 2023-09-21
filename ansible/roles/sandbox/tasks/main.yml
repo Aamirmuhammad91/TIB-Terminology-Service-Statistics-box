@@ -5,12 +5,12 @@
     force: yes
     version: '{{ sandbox_version }}'
 
-- name: Run Docker Compose build
-  shell: docker-compose build
-  args:
-    chdir: '{{ sandbox_base_dir }}'
+# - name: Run Docker Compose build
+#   shell: docker-compose build
+#   args:
+#     chdir: '{{ sandbox_base_dir }}'
 
-- name: Run docker-compose up
-  command: 'docker-compose up'
-  args:
-    chdir: '{{ sandbox_base_dir }}'
+# - name: Run docker-compose up
+#   command: 'docker-compose up -d'
+#   args:
+#     chdir: '{{ sandbox_base_dir }}'
