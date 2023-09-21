@@ -1,7 +1,7 @@
 ---
 # TODO define your group-vars here
 sandbox_repo: https://git.tib.eu/terminology/sandbox/tib-terminology-service-statistics
-sandbox_version: 67-deployment-to-test-server # Sandbox version that should be installed
+sandbox_version: 68-sandbox-statistics-module-only-process-coypu-collection-but-has-to-process-all-ts-ontologies # Sandbox version that should be installed
 sandbox_installation_dir: '{{ansible_env.HOME}}' # installation directory on the target system
 sandbox_base_dir: '{{ backend_sandbox_installation_dir }}/SANDBOX' # OLS directory on the target system
 backend_dockerfile:

@@ -1,0 +1,11 @@
+server {
+  listen 80;
+  server_name  {{terminology_service_host}};
+  location / {
+      gzip_static on;
+      root {{terminology_service_frontend_path}}/build;
+      index  index.html;
+      try_files $uri $uri/ /index.html =404;
+      add_header Cache-Control "no-store, no-cache, must-revalidate";
+    }
+}
