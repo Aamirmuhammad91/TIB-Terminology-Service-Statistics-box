@@ -1,0 +1,14 @@
+---
+- name: Ensure Java 17 is installed
+  become: yes
+  apt:
+    name: '{{ java_package_name }}'
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure Java 17 is installed
+  become: yes
+  yum:
+    name: '{{ java_package_name }}'
+    state: present
+  when: ansible_os_family == 'RedHat'
