@@ -7,7 +7,8 @@
 
 - name: Run Docker Compose up
   command: docker-compose up --force-recreate --build -d
-  chdir: '{{ sandbox_base_dir }}'
+  args:
+    chdir: '{{ sandbox_base_dir }}'
 # - name: Run Docker Compose build
 #   shell: docker-compose build
 #   args:
