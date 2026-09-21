@@ -39,3 +39,20 @@ Scenario: Install Your Application Name automatically on an existing system like
 see https://github.com/TIBHannover/application-setup-box-template/wiki/Integration-of-automated-installation-into-GitLab-CI-CD-process
 
 also have a look at the [gitlab-config-example](doc/gitlab-config-example)
+
+## Service-specific deployments
+
+By default the sandbox role runs Docker Compose for the whole project, preserving the previous behavior:
+
+```bash
+ansible-playbook -i inventory.yml ansible/playbook.yml
+```
+
+To deploy only selected Docker Compose services, set `sandbox_services` to a space-separated list of service names from the target repository's `docker-compose.yml`:
+
+```bash
+ansible-playbook -i inventory.yml ansible/playbook.yml \
+  --extra-vars "sandbox_services=history-back"
+```
+
+This is useful when the sandbox repository contains multiple tools, such as `history`, `statistics`, and `tiva`, and a change should rebuild/restart only one service. Leave `sandbox_services` empty to deploy everything.

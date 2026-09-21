@@ -7,3 +7,5 @@ sandbox_base_dir: '{{ backend_sandbox_installation_dir }}/SANDBOX' # OLS directo
 backend_dockerfile:
 alternative_dockercomposefile:
 docker_user: '{{ ansible_user }}'
+# Optional space-separated Docker Compose services to deploy. Empty deploys all services.
+sandbox_services: ''
