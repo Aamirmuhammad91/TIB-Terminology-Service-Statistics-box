@@ -9,3 +9,6 @@ all:
       
       # group variables
       # Set all group-specific ansible variables here that are required to install the Box.
+      # Optional: deploy only selected Docker Compose services, e.g. 'history-back'.
+      # Leave empty or omit to deploy all services.
+      # sandbox_services: 'history-back'
