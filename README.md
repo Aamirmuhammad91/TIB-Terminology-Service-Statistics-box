@@ -56,3 +56,14 @@ ansible-playbook -i inventory.yml ansible/playbook.yml \
 ```
 
 This is useful when the sandbox repository contains multiple tools, such as `history`, `statistics`, and `tiva`, and a change should rebuild/restart only one service. Leave `sandbox_services` empty to deploy everything.
+
+## Compose environment files
+
+The sandbox role can copy a Docker Compose environment file after the repository checkout and before `docker compose up`. This is useful when an internal config repository owns deployment-specific `.env` files and the deployed application repository should not track them.
+
+```bash
+ansible-playbook -i inventory.yml ansible/playbook.yml \
+  --extra-vars "sandbox_env_src=/path/to/ondet.env sandbox_env_file=.env"
+```
+
+`sandbox_env_src` is copied from the Ansible controller to the target sandbox directory with mode `0600` and `no_log: true`. Leave it empty to skip writing an environment file.

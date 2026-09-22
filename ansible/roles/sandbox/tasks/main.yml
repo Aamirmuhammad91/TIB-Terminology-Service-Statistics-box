@@ -5,6 +5,16 @@
     force: yes
     version: '{{ sandbox_version }}'
 
+- name: Copy Docker Compose environment file
+  copy:
+    src: '{{ sandbox_env_src }}'
+    dest: '{{ sandbox_base_dir }}/{{ sandbox_env_file | default(".env") }}'
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_user }}'
+    mode: '0600'
+  no_log: true
+  when: sandbox_env_src | default('') | length > 0
+
 - name: Run Docker Compose up
   command: >-
     docker compose up --force-recreate --build -d

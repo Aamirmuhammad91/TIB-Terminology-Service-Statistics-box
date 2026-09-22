@@ -9,3 +9,6 @@ alternative_dockercomposefile:
 docker_user: '{{ ansible_user }}'
 # Optional space-separated Docker Compose services to deploy. Empty deploys all services.
 sandbox_services: ''
+# Optional Docker Compose environment file copied after checkout and before deployment.
+sandbox_env_file: '.env'
+sandbox_env_src: ''
