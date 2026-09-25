@@ -15,18 +15,25 @@
   no_log: true
   when: sandbox_env_src | default('') | length > 0
 
+- name: Build Docker Compose file arguments
+  set_fact:
+    sandbox_compose_file_args: >-
+      {% for compose_file in (sandbox_compose_files | default('', true)).split() %}
+      -f {{ compose_file }}
+      {% endfor %}
+
+- name: Show Docker Compose deployment target
+  debug:
+    msg:
+      - "Repository: {{ sandbox_repo }}"
+      - "Version: {{ sandbox_version }}"
+      - "Directory: {{ sandbox_base_dir }}"
+      - "Compose files: {{ sandbox_compose_files | default('Docker Compose defaults', true) }}"
+      - "Services: {{ sandbox_services | default('all services', true) }}"
+
 - name: Run Docker Compose up
   command: >-
-    docker compose up --force-recreate --build -d
+    docker compose {{ sandbox_compose_file_args }} up --force-recreate --build -d
     {{ sandbox_services | default('') }}
   args:
     chdir: '{{ sandbox_base_dir }}'
-# - name: Run Docker Compose build
-#   shell: docker-compose build
-#   args:
-#     chdir: '{{ sandbox_base_dir }}'
-
-# - name: Run docker-compose up
-#   command: 'docker-compose up -d'
-#   args:
-#     chdir: '{{ sandbox_base_dir }}'
