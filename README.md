@@ -67,3 +67,20 @@ ansible-playbook -i inventory.yml ansible/playbook.yml \
 ```
 
 `sandbox_env_src` is copied from the Ansible controller to the target sandbox directory with mode `0600` and `no_log: true`. Leave it empty to skip writing an environment file.
+
+
+## Explicit Compose files
+
+The sandbox role can run Docker Compose with an explicit list of compose files.
+This is useful when an application repository contains a local
+`docker-compose.override.yml` for development, but deployment should use only the
+base compose file prepared by CI.
+
+```bash
+ansible-playbook -i inventory.yml ansible/playbook.yml \
+  --extra-vars "sandbox_compose_files=docker-compose.yml sandbox_services=quality-assessment-back"
+```
+
+Leave `sandbox_compose_files` empty to keep Docker Compose default file discovery.
+Before starting containers, the role prints the target repository, version,
+directory, compose files, and service list to the CI log.
